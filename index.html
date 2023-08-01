@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1{
+      font-family: fantasy;
+      font-size: 50px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    input[type="number"] {
+      width: 200px;
+      height: 50px;
+      font-size: 50px;
+      border-radius: 10px;
+
+    }
+
+    .converter-container {
+      border: 2px solid lightblue;
+      margin: 0px 500px;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      background: lightskyblue;
+      border-radius: 20px;
+      border: 2px groove black;
+    }
+    .converter-container button{
+      padding:5px 30px ;
+      border: 2px double darkseagreen;
+      border-radius: 20px;
+      width: 200px;
+      height: 50px;
+    }
+    .converter-container button:hover{
+      color: lightgoldenrodyellow;
+      background: darkorchid;
+    }
+    .converter-container p{
+      background-color: lightcyan;
+     
+      font-size: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <div class="converter-container">
+    <label for="temperature">Temperature:</label>
+    <input type="number" id="temperature" />
+    <br />
+    <input type="radio" name="conversionType" value="celsiusToFahrenheit" checked />
+    <label for="celsiusToFahrenheit">Celsius to Fahrenheit</label>
+    <input type="radio" name="conversionType" value="fahrenheitToCelsius" />
+    <label for="fahrenheitToCelsius">Fahrenheit to Celsius</label>
+    <br />
+    <button onclick="convertTemperature()">Convert</button>
+    <br />
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      var temperatureInput = document.getElementById('temperature');
+      var conversionType = document.querySelector('input[name="conversionType"]:checked').value;
+      var temperatureValue = parseFloat(temperatureInput.value);
+      var resultElement = document.getElementById('result');
+      
+      if (conversionType === 'celsiusToFahrenheit') {
+        var fahrenheitValue = (temperatureValue * 9 / 5) + 32;
+        resultElement.textContent = `${temperatureValue}°C is ${fahrenheitValue.toFixed(2)}°F.`;
+      } else if (conversionType === 'fahrenheitToCelsius') {
+        var celsiusValue = (temperatureValue - 32) * (5 / 9);
+        resultElement.textContent = `${temperatureValue}°F is ${celsiusValue.toFixed(2)}°C.`;
+      }
+    }
+  </script>
+</body>
+</html>
